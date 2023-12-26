@@ -44,31 +44,7 @@ spec:
           name: rabbitmq-enabled-plugins
           items:
           - key: rabbitmq_enabled_plugins
-            path: enabled_plugins
----
-apiVersion: v1
-data:
-  rabbitmq_enabled_plugins: |
-    [rabbitmq_management,rabbitmq_prometheus,rabbitmq_amqp1_0].
-kind: ConfigMap
-metadata:
-  name: rabbitmq-enabled-plugins            
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rabbitmq
-spec:
-  selector:
-    app: rabbitmq
-  ports:
-    - name: rabbitmq-amqp
-      port: 5672
-      targetPort: 5672
-    - name: rabbitmq-http
-      port: 15672
-      targetPort: 15672
-  type: ClusterIP
+            path: enabled_plugins           
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -123,19 +99,6 @@ spec:
             cpu: 75m
             memory: 128Mi    
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: order-service
-spec:
-  type: ClusterIP
-  ports:
-  - name: http
-    port: 3000
-    targetPort: 3000
-  selector:
-    app: order-service
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -164,19 +127,6 @@ spec:
           limits:
             cpu: 1m
             memory: 7Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: product-service
-spec:
-  type: ClusterIP
-  ports:
-  - name: http
-    port: 3002
-    targetPort: 3002
-  selector:
-    app: product-service
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -212,15 +162,4 @@ spec:
           limits:
             cpu: 1000m
             memory: 512Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: store-front
-spec:
-  ports:
-  - port: 80
-    targetPort: 8080
-  selector:
-    app: store-front
-  type: LoadBalancer
+
