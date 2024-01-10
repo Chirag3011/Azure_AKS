@@ -43,7 +43,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: store-front
+  name: external-lb
 spec:
   ports:
   - port: 80
