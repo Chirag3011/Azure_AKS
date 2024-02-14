@@ -30,4 +30,18 @@ Before using these YAML files, make sure you have the following prerequisites in
   kubectl get services
   kubectl get pods
   kubectl get pods -o custom-columns=POD:.metadata.name,CONTAINERS:.spec.containers[*].name --> to get running containers
+  kubectl get all --all-namespaces --> to list everything
+  kubectl config view  ---> get congiguration of cluster
+  kubectl cluster-info ---> Display endpoint information about the master and services in the cluster
+  kubectl get deployment
+  kubectl describe deployment/pod/svc/ingress/ingreclass/ingresscontroller <name>  ---> Display the detailed state of one or more deployments/resource/objects..
+  kubectl logs <pod_name> 
+  kubectl logs --since=1h <pod_name> 
+  kubectl logs --tail=20 <pod_name
+  kubectl logs -f <service_name> [-c <$container>]
+  kubectl logs -f <pod_name>
+  kubectl top node  ---> Display Resource usage (CPU/Memory/Storage) for nodes
+  kubectl describe nodes | grep Allocated -A 5  ---> Resource allocation per node
+  kubectl exec <pod_name> -c <container_name> <command> ---> Execute a command against a container in a pod
+
 
